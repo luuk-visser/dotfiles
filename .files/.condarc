@@ -1,0 +1,6 @@
+channels:
+   - conda-forge
+
+auto_update_conda: True
+
+always_yes: True
