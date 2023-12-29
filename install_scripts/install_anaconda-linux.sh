@@ -5,7 +5,6 @@ chmod +x anaconda.sh
 rm anaconda.sh
 export PATH=$prefix/bin:$PATH
 
-jupyter lab --generate-config
 source "${prefix}/etc/profile.d/conda.sh"
 # For mamba support also run the following command
 source "${prefix}/etc/profile.d/mamba.sh"
