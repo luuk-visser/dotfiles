@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 alias ..='cd ..'
 
 shellrc=$HOME/.$(basename $SHELL)rc
