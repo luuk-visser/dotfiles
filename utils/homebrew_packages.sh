@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # Declaration of homebrew packages that are desired
 export BREW_PACKAGES=(
   "bat"		    # A replacement for cat:  https://github.com/sharkdp/bat

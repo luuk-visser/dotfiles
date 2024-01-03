@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # Setting the PATH environment variable
 echo "Linking to home folder binaries."
 export PATH="$HOME/bin:$PATH"

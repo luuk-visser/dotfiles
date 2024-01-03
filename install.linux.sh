@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # Linux installation script.
 
 # Step 1: Create directories

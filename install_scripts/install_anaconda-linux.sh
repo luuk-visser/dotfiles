@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 prefix=$HOME/anaconda
 wget "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh" -O anaconda.sh
 chmod +x anaconda.sh
