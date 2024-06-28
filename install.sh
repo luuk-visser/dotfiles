@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # Linux installation script.
 
+set -eou pipefail
+
 # Create directories
 chmod +x ./install_scripts/create_directories.sh
 ./install_scripts/create_directories.sh
