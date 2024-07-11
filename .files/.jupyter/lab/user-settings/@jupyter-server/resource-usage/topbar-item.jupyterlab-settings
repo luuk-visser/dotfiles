@@ -1,0 +1,10 @@
+{
+    "enable": true,
+    "refreshRate": 2500,
+    "memory": {
+        "label": "Mem: "
+    },
+    "cpu": {
+        "label": "CPU: "
+    }
+}
