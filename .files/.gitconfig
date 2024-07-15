@@ -1,0 +1,11 @@
+[init]
+        defaultBranch = main
+[user]
+        name = Luuk Visser
+[filter "nbstripout"]
+        clean = $CONDA_PYTHON_EXE -m nbstripout
+        smudge = cat
+        required = true
+[diff "ipynb"]
+        textconv = $CONDA_PYTHON_EXE -m nbstripout -t
+
