@@ -10,7 +10,7 @@ chmod -x ./install_scripts/create_directories.sh
 
 # Configure git
 chmod +x ./install_scripts/configure_git.sh
-./install_scripts.configure_git.sh
+./install_scripts/configure_git.sh
 chmod -x ./install_scripts/configure_git.sh
 
 
