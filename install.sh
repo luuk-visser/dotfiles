@@ -3,19 +3,23 @@
 
 set -eou pipefail
 
+execute_script()
+{
+  SCRIPT=$1
+  chmod +x "$SCRIPT"
+  "$SCRIPT"
+  chmod -x "$SCRIPT"
+}
+
 # Create directories
-chmod +x ./install_scripts/create_directories.sh
-./install_scripts/create_directories.sh
-chmod -x ./install_scripts/create_directories.sh
+execute_script ./install_scripts/create_directories.sh
 
 # Configure git
-chmod +x ./install_scripts/configure_git.sh
-./install_scripts/configure_git.sh
-chmod -x ./install_scripts/configure_git.sh
-
-
+execute_script ./install_scripts/configure_git.sh
 
 # Install Anaconda
-chmod +x ./install_scripts/install_anaconda-linux.sh
-./install_scripts/install_anaconda-linux.sh
-chmod -x ./install_scripts/install_anaconda-linux.sh
+execute_script ./install_scripts/install_anaconda-linux.sh
+
+# Install ohmyzsh
+execute_script ./install_scripts/install_ohmyzsh.sh
+
