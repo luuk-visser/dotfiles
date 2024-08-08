@@ -14,9 +14,6 @@ execute_script()
 # Create directories
 execute_script ./install_scripts/create_directories.sh
 
-# Configure git
-execute_script ./install_scripts/configure_git.sh
-
 # Install Anaconda
 execute_script ./install_scripts/install_anaconda-linux.sh
 
