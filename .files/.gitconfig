@@ -2,6 +2,8 @@
         defaultBranch = main
 [user]
         name = Luuk Visser
+[push]
+        autoSetupRemote = true
 [filter "nbstripout"]
         clean = $CONDA_PYTHON_EXE -m nbstripout
         smudge = cat
