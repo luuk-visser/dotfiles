@@ -20,3 +20,6 @@ execute_script ./install_scripts/install_anaconda-linux.sh
 # Install ohmyzsh
 execute_script ./install_scripts/install_ohmyzsh.sh
 
+# Install dotfiles
+execute_script ./install_scripts/install_dotfiles.sh
+
