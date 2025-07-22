@@ -11,6 +11,48 @@ execute_script()
   chmod -x "$SCRIPT"
 }
 
+# Define all installation components in one place
+declare -A components
+components=(
+  [1,name]="Create Directories"
+  [1,description]="Creates ~/bin, ~/.ssh, ~/Documents"
+  [1,script]="./install_scripts/create_directories.sh"
+  [1,install_message]="Creating directories..."
+  
+  [2,name]="Pixi"
+  [2,description]="Python package manager and project management tool"
+  [2,script]="./install_scripts/install_pixi-linux.sh"
+  [2,install_message]="Installing Pixi..."
+  
+  [3,name]="Oh My Zsh"
+  [3,description]="Enhanced Zsh shell with themes and plugins"
+  [3,script]="./install_scripts/install_ohmyzsh.sh"
+  [3,install_message]="Installing Oh My Zsh..."
+  
+  [4,name]="Powerlevel10k"
+  [4,description]="Zsh theme with fast prompt and extensive customization"
+  [4,script]="./install_scripts/install_powerlevel10k.sh"
+  [4,install_message]="Installing Powerlevel10k..."
+  
+  [5,name]="Dotfiles"
+  [5,description]="Copy configuration files to home directory"
+  [5,script]="./install_scripts/install_dotfiles.sh"
+  [5,install_message]="Installing dotfiles..."
+)
+
+# Get the number of components dynamically
+get_component_count() {
+  local count=0
+  for key in "${!components[@]}"; do
+    if [[ $key == *",name" ]]; then
+      ((count++))
+    fi
+  done
+  echo $count
+}
+
+COMPONENT_COUNT=$(get_component_count)
+
 show_menu() {
   echo "======================================"
   echo "   Dotfiles Installation Menu"
@@ -18,25 +60,25 @@ show_menu() {
   echo
   echo "Select components to install:"
   echo
-  echo "1. [${selections[1]}] Create Directories - Creates ~/bin, ~/.ssh, ~/Documents"
-  echo "2. [${selections[2]}] Pixi - Python package manager and project management tool"
-  echo "3. [${selections[3]}] Oh My Zsh - Enhanced Zsh shell with themes and plugins"
-  echo "4. [${selections[4]}] Dotfiles - Copy configuration files to home directory"
+  
+  for i in $(seq 1 $COMPONENT_COUNT); do
+    echo "$i. [${selections[$i]}] ${components[$i,name]} - ${components[$i,description]}"
+  done
+  
   echo
   echo "Commands:"
   echo "  a - Install all components"
   echo "  i - Install selected components"
   echo "  q - Quit without installing"
   echo
-  echo "Toggle selection: Enter component number (1-4)"
+  echo "Toggle selection: Enter component number (1-$COMPONENT_COUNT)"
 }
 
 # Initialize selections (X = selected, space = unselected)
 declare -A selections
-selections[1]="X"
-selections[2]="X" 
-selections[3]="X"
-selections[4]="X"
+for i in $(seq 1 $COMPONENT_COUNT); do
+  selections[$i]="X"
+done
 
 while true; do
   clear
@@ -45,18 +87,22 @@ while true; do
   read -p "Choice: " choice
   
   case $choice in
-    1|2|3|4)
-      if [[ "${selections[$choice]}" == "X" ]]; then
-        selections[$choice]=" "
+    [1-9]*)
+      if [[ $choice -ge 1 && $choice -le $COMPONENT_COUNT ]]; then
+        if [[ "${selections[$choice]}" == "X" ]]; then
+          selections[$choice]=" "
+        else
+          selections[$choice]="X"
+        fi
       else
-        selections[$choice]="X"
+        echo "Invalid choice. Press Enter to continue..."
+        read
       fi
       ;;
     a|A)
-      selections[1]="X"
-      selections[2]="X"
-      selections[3]="X"
-      selections[4]="X"
+      for i in $(seq 1 $COMPONENT_COUNT); do
+        selections[$i]="X"
+      done
       ;;
     i|I)
       break
@@ -76,25 +122,12 @@ clear
 echo "Installing selected components..."
 echo
 
-if [[ "${selections[1]}" == "X" ]]; then
-  echo "Creating directories..."
-  execute_script ./install_scripts/create_directories.sh
-fi
-
-if [[ "${selections[2]}" == "X" ]]; then
-  echo "Installing Pixi..."
-  execute_script ./install_scripts/install_pixi-linux.sh
-fi
-
-if [[ "${selections[3]}" == "X" ]]; then
-  echo "Installing Oh My Zsh..."
-  execute_script ./install_scripts/install_ohmyzsh.sh
-fi
-
-if [[ "${selections[4]}" == "X" ]]; then
-  echo "Installing dotfiles..."
-  execute_script ./install_scripts/install_dotfiles.sh
-fi
+for i in $(seq 1 $COMPONENT_COUNT); do
+  if [[ "${selections[$i]}" == "X" ]]; then
+    echo "${components[$i,install_message]}"
+    execute_script "${components[$i,script]}"
+  fi
+done
 
 echo
 echo "Installation complete!"
