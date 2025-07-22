@@ -19,25 +19,25 @@ components=(
   [1,script]="./install_scripts/create_directories.sh"
   [1,install_message]="Creating directories..."
   
-  [2,name]="Pixi"
-  [2,description]="Python package manager and project management tool"
-  [2,script]="./install_scripts/install_pixi-linux.sh"
-  [2,install_message]="Installing Pixi..."
+  [2,name]="Dotfiles"
+  [2,description]="Copy configuration files to home directory"
+  [2,script]="./install_scripts/install_dotfiles.sh"
+  [2,install_message]="Installing dotfiles..."
   
-  [3,name]="Oh My Zsh"
-  [3,description]="Enhanced Zsh shell with themes and plugins"
-  [3,script]="./install_scripts/install_ohmyzsh.sh"
-  [3,install_message]="Installing Oh My Zsh..."
+  [3,name]="Pixi"
+  [3,description]="Python package manager and project management tool"
+  [3,script]="./install_scripts/install_pixi-linux.sh"
+  [3,install_message]="Installing Pixi..."
   
-  [4,name]="Powerlevel10k"
-  [4,description]="Zsh theme with fast prompt and extensive customization"
-  [4,script]="./install_scripts/install_powerlevel10k.sh"
-  [4,install_message]="Installing Powerlevel10k..."
+  [4,name]="Oh My Zsh"
+  [4,description]="Enhanced Zsh shell with themes and plugins"
+  [4,script]="./install_scripts/install_ohmyzsh.sh"
+  [4,install_message]="Installing Oh My Zsh..."
   
-  [5,name]="Dotfiles"
-  [5,description]="Copy configuration files to home directory"
-  [5,script]="./install_scripts/install_dotfiles.sh"
-  [5,install_message]="Installing dotfiles..."
+  [5,name]="Powerlevel10k"
+  [5,description]="Zsh theme with fast prompt and extensive customization"
+  [5,script]="./install_scripts/install_powerlevel10k.sh"
+  [5,install_message]="Installing Powerlevel10k..."
 )
 
 # Get the number of components dynamically
